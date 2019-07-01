@@ -10,60 +10,50 @@ interface SquareProps {
     isAWinnerSquare: boolean;
     onClick: (row: number, col: number) => void;
     row: number;
-    useTheme: boolean;
+    isThemeOn: boolean;
     value: string | null;
 }
 
-class Square extends React.Component<SquareProps> {
-    constructor(props: SquareProps) {
-        super(props);
-
-        this.handleClick = this.handleClick.bind(this);
-    }
-    
-    handleClick() {
-        this.props.onClick(this.props.row, this.props.col)
+export default function Square(props: SquareProps) {
+    const handleClick = () => {
+        props.onClick(props.row, props.col);
     }
 
-    renderSVG() {
-        if (this.props.value === 'X') {
-            return (
-                <img
-                    alt={'X'}
-                    className={styles.svgImage}
-                    src={XSVG}
-                />
-            );
-        } else if (this.props.value === 'O') {
-            return (
-                <img
-                    alt={'O'}
-                    src={OSVG}
-                />
-            );
-        } else {
-            return null;
-        }
-    }
-
-    render() {
-        return (
-            <div
-                className={
-                    this.props.isAWinnerSquare
-                    ? styles.winner + ' ' + styles.td
-                    : styles.td
-                }
-                onClick={this.handleClick}
-            >
-                {
-                    this.props.useTheme
-                    ? this.renderSVG()
-                    : this.props.value
-                }
-            </div>
-        );
-    }
+    return (
+        <div
+            className={
+                props.isAWinnerSquare
+                ? styles.winner + ' ' + styles.td
+                : styles.td
+            }
+            onClick={handleClick}
+        >
+            {
+                props.isThemeOn
+                ? renderSVG(props.value)
+                : props.value
+            }
+        </div>
+    );
 }
 
-export default Square;
+function renderSVG(value: string | null) {
+    if (value === 'X') {
+        return (
+            <img
+                alt={'X'}
+                className={styles.svgImage}
+                src={XSVG}
+            />
+        );
+    } else if (value === 'O') {
+        return (
+            <img
+                alt={'O'}
+                src={OSVG}
+            />
+        );
+    } else {
+        return null;
+    }
+}
