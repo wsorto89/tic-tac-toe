@@ -1,0 +1,26 @@
+.game {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    align-self: center;
+    margin: 1rem;
+    max-width: 200px;
+    min-width: 80px;
+    width: 10%;
+}
+
+.buttonBar {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1096px) {
+    .button {
+        margin: 4px;
+    }
+    .buttonBar {
+        flex-direction: column;
+    }
+}
