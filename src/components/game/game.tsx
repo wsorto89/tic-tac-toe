@@ -36,7 +36,7 @@ export default function TicTacToeGame() {
             newHistory.push(values);
 
             const winnerFound = winningLine.size > 0;
-            const isFinalMove = history.length === DRAW_LENGTH;
+            const isFinalMove = newHistory.length === DRAW_LENGTH;
             let isGameOver = determineIsGameOver(winnerFound, isFinalMove);
             let statusMsg = determineStatusMsg(isPlayer1Turn, winnerFound, isFinalMove);
             
